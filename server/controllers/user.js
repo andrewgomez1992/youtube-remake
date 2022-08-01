@@ -1,5 +1,5 @@
-const test = () => {
-    console.log('test is working')
+const test = (req, res) => {
+    res.json('Success!')
 }
 
 export default test;
