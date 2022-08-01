@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import User from '../models/User.js';
 import bcrypt from 'bcryptjs';
+import { createError } from '../error.js';
 
 export const signup = async (req, res, next) => {
     // console.log(req.body)
@@ -13,6 +14,6 @@ export const signup = async (req, res, next) => {
         res.status(200).json('User has been created')
     }
     catch (err) {
-        next(err)
+        next(createError(404, 'not found sorry!'))
     }
 }
