@@ -14,6 +14,19 @@ export const signup = async (req, res, next) => {
         res.status(200).json('User has been created')
     }
     catch (err) {
-        next(createError(404, 'not found sorry!'))
+        next(err)
+    }
+}
+
+export const signin = async (req, res, next) => {
+    // console.log(req.body)
+    try {
+        const user = await User.findOne({ name: req.body.name }) // findOne is a MONGODB Method!
+        if (!user) {
+            return next(createError(404, 'User not found!'))
+        }
+    }
+    catch (err) {
+        next(err)
     }
 }
