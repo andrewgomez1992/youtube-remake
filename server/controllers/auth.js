@@ -32,6 +32,10 @@ export const signin = async (req, res, next) => {
         }
 
         const token = jwt.sign({ id: user._id }, process.env.JWT) // takes our id and creates a hash token
+
+        res.cookie('access_token', token, {
+            httpOnly: true
+        }).status(200)
     }
     catch (err) {
         next(err)
