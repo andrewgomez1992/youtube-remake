@@ -31,11 +31,12 @@ export const signin = async (req, res, next) => {
             return next(createError(400, "Wrong Credentials!"))
         }
 
-        const token = jwt.sign({ id: user._id }, process.env.JWT) // takes our id and creates a hash token
+        const token = jwt.sign({ id: user._id }, process.env.JWT) // Takes our id and creates a hash token
+        const { password, ...others } = user._doc // Getting rid of password so it doesnt show upon request
 
         res.cookie('access_token', token, {
             httpOnly: true
-        }).status(200).json(user)
+        }).status(200).json(others)
     }
     catch (err) {
         next(err)
