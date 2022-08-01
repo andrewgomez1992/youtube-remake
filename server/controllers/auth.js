@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import User from '../models/User.js';
 import bcrypt from 'bcryptjs';
 import { createError } from '../error.js';
+import jwt from 'jsonwebtoken';
 
 export const signup = async (req, res, next) => {
     // console.log(req.body)
@@ -26,10 +27,11 @@ export const signin = async (req, res, next) => {
             return next(createError(404, 'User Not Found!'))
         }
         const isCorrect = await bcrypt.compare(req.body.password, user.password)
-
         if (!isCorrect) {
             return next(createError(400, "Wrong Credentials!"))
         }
+
+        const token = jwt.sign({ id: user._id })
     }
     catch (err) {
         next(err)
