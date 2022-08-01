@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import userRoutes from './routes/users.js';
 
 const app = express()
 dotenv.config()
@@ -14,6 +15,8 @@ const connect = () => {
             console.log('Mongo DB not connected!')
         })
 }
+
+app.use('/api/users', userRoutes)
 
 app.listen(9000, () => {
     connect()
