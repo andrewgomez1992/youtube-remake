@@ -23,7 +23,12 @@ export const signin = async (req, res, next) => {
     try {
         const user = await User.findOne({ name: req.body.name }) // findOne is a MONGODB Method!
         if (!user) {
-            return next(createError(404, 'User not found!'))
+            return next(createError(404, 'User Not Found!'))
+        }
+        const isCorrect = await bcrypt.compare(req.body.password, user.password)
+
+        if (!isCorrect) {
+            return next(createError(400, "Wrong Credentials!"))
         }
     }
     catch (err) {
