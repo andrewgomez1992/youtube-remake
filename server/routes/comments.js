@@ -6,7 +6,7 @@ import { addComment, deleteComment, getComments } from '../controllers/comment.j
 const router = express.Router();
 
 router.post('/', verifyToken, addComment)
-router.post('/', verifyToken, deleteComment)
-router.post('/', verifyToken, getComments)
+router.delete('/:id', verifyToken, deleteComment)
+router.get('/:videoId', verifyToken, getComments)
 
 export default router;
