@@ -20,9 +20,10 @@ export const updateVideo = async (req, res, next) => {
             return next(createError(404, 'Video not found!'))
         }
         if (req.user.id === video.userId) {
-            const updatedUser = await Video.findByIdAndUpdate(req.params.id, {
+            const updatedVideo = await Video.findByIdAndUpdate(req.params.id, {
                 $set: req.body
             }, { new: true })
+            res.status(200).json(updatedVideo)
         }
     }
     catch (err) {
