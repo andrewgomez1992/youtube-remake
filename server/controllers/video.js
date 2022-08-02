@@ -95,7 +95,10 @@ export const trend = async (req, res, next) => {
 
 export const sub = async (req, res, next) => {
     try {
-        const user = await User.findById(req.user.id)
+        const user = await User.findById(req.user.id);
+        const subscribedChannels = user.subscribedUsers;
+
+        const list = Promise.all() // promise will find all videos of subscribed channel
     }
     catch (err) {
         next(err)
