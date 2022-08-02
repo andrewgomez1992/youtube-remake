@@ -75,8 +75,8 @@ export const addView = async (req, res, next) => {
 
 export const random = async (req, res, next) => {
     try {
-        const video = await Video.aggregate([{ $sample: { size: 40 } }])
-        res.status(200).json(video)
+        const videos = await Video.aggregate([{ $sample: { size: 40 } }]); // MongoDB method to give 40 random videos
+        res.status(200).json(videos)
     }
     catch (err) {
         next(err)
@@ -85,8 +85,8 @@ export const random = async (req, res, next) => {
 
 export const trend = async (req, res, next) => {
     try {
-        const video = await Video.findById(req.params.id)
-        res.status(200).json(video)
+        const videos = await Video.find().sort({ views: -1 })
+        res.status(200).json(videos)
     }
     catch (err) {
         next(err)
@@ -95,8 +95,7 @@ export const trend = async (req, res, next) => {
 
 export const sub = async (req, res, next) => {
     try {
-        const video = await Video.findById(req.params.id)
-        res.status(200).json(video)
+        const user = await User.findById(req.user.id)
     }
     catch (err) {
         next(err)
