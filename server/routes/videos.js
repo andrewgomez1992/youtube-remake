@@ -9,5 +9,9 @@ router.post('/', verifyToken, addVideo)
 router.put('/:id', verifyToken, addVideo)
 router.delete('/:id', verifyToken, addVideo)
 router.get('/find/:id', addVideo)
+router.put('/view/:id', addVideo)
+router.get('/trend', addVideo)
+router.get('/random', addVideo)
+router.get('/sub', addVideo)
 
 export default router;
