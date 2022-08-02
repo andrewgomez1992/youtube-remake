@@ -75,7 +75,7 @@ export const addView = async (req, res, next) => {
 
 export const random = async (req, res, next) => {
     try {
-        const video = await Video.findById(req.params.id)
+        const video = await Video.aggregate([{ $sample: { size: 40 } }])
         res.status(200).json(video)
     }
     catch (err) {
