@@ -13,5 +13,7 @@ router.put('/view/:id', addView)
 router.get('/trend', trend)
 router.get('/random', random)
 router.get('/sub', verifyToken, sub)
+router.get('/tags', sub)
+router.get('/search', sub)
 
 export default router;
