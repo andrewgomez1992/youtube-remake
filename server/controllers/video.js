@@ -63,8 +63,10 @@ export const getVideo = async (req, res, next) => {
 
 export const addView = async (req, res, next) => {
     try {
-        const video = await Video.findById(req.params.id)
-        res.status(200).json(video)
+        await Video.findByIdAndUpdate(req.params.id, {
+            $inc: { views: 1 }
+        })
+        res.status(200).json('The view has been increased.')
     }
     catch (err) {
         next(err)
