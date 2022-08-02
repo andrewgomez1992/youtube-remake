@@ -1,7 +1,11 @@
+import User from '../models/User.js';
+import Video from '../models/Video.js';
+import { createError } from '../error.js';
+
 export const addVideo = async (req, res, next) => {
-    const newVideo = new VideoColorSpace({ userId: req.user.id, ...req.body })
+    const newVideo = new Video({ userId: req.user.id, ...req.body })
     try {
-        const savedVideo = await newVideo.save()
+        const savedVideo = await new Video.save()
         res.status(200).json(savedVideo)
     }
     catch (err) {
@@ -11,7 +15,7 @@ export const addVideo = async (req, res, next) => {
 
 export const updateVideo = async (req, res, next) => {
     try {
-
+        const video = await Video.findById(req.params.id)
     }
     catch (err) {
         next(err)

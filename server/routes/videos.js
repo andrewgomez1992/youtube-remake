@@ -1,5 +1,4 @@
 import express from 'express';
-import { } from '../controllers/video.js';
 import { verifyToken } from '../verifyToken.js';
 import { addVideo } from '../controllers/video.js';
 
